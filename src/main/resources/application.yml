@@ -1,0 +1,15 @@
+spring:
+  batch:
+    job:
+      name: ${job.name:NONE}
+    jdbc:
+      initialize-schema: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/point?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: password
