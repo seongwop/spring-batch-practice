@@ -1,0 +1,10 @@
+spring:
+  batch:
+    job:
+      name: ${job.name:NONE}
+    jdbc:
+      initialize-schema: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
