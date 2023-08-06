@@ -27,8 +27,8 @@ class ExpirePointJobConfigurationTest extends BatchTestSupport {
     @Test
     void expirePointJob() throws Exception {
         // given
-        LocalDate earnedDate = LocalDate.of(2021, 1, 1);
-        LocalDate expireDate = LocalDate.of(2021, 1, 5);
+        LocalDate earnedDate = LocalDate.of(2023, 8, 1);
+        LocalDate expireDate = LocalDate.of(2023, 8, 4);
         PointWallet pointWallet = pointWalletRepository.save(
                 new PointWallet(
                         "user123",
@@ -40,7 +40,7 @@ class ExpirePointJobConfigurationTest extends BatchTestSupport {
         pointRepository.save(new Point(pointWallet, BigInteger.valueOf(1000), earnedDate, expireDate));
         // when
         JobParameters jobParameters = new JobParametersBuilder()
-                .addString("today", "2021-01-06")
+                .addString("today", "2023-08-05")
                 .toJobParameters();
         JobExecution jobExecution = launchJob(expirePointJob, jobParameters);
         // then

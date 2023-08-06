@@ -2,9 +2,7 @@ package com.example.pointmanagement.point;
 
 import com.example.pointmanagement.point.wallet.PointWallet;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -12,6 +10,7 @@ import java.time.LocalDate;
 @Entity
 @Table
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
 public class Point extends IdEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -30,6 +29,7 @@ public class Point extends IdEntity {
     @Column(name = "is_used", nullable = false, columnDefinition = "TINYINT", length = 1)
     boolean used;
 
+    @Setter
     @Column(name = "is_expired", nullable = false, columnDefinition = "TINYINT", length = 1)
     boolean expired;
 

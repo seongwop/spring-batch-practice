@@ -3,9 +3,7 @@ package com.example.pointmanagement.point.reservation;
 import com.example.pointmanagement.point.IdEntity;
 import com.example.pointmanagement.point.wallet.PointWallet;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -13,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Table
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
 public class PointReservation extends IdEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -28,6 +27,7 @@ public class PointReservation extends IdEntity {
     @Column(name = "available_days", nullable = false)
     int availableDays;
 
+    @Setter
     @Column(name = "is_executed", columnDefinition = "TINYINT", length = 1)
     boolean executed;
 
