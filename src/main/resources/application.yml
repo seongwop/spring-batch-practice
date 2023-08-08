@@ -1,9 +1,9 @@
 spring:
   batch:
-    job:
-      name: ${job.name:NONE}
     jdbc:
       initialize-schema: always
+    job:
+      name: {job.name:NONE}
   jpa:
     show-sql: true
     hibernate:

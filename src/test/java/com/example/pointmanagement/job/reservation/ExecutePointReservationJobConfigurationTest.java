@@ -30,7 +30,7 @@ class ExecutePointReservationJobConfigurationTest extends BatchTestSupport {
     @Test
     void executePointReservationJob() throws Exception {
         // given
-        LocalDate earnDate = LocalDate.of(2021, 1, 5);
+        LocalDate earnDate = LocalDate.of(2023, 8, 6);
         PointWallet pointWallet = pointWalletRepository.save(
                 new PointWallet(
                         "user1",
