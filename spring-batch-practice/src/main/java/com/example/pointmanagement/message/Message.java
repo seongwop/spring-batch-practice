@@ -32,7 +32,7 @@ public class Message extends IdEntity {
         return new Message(
                 userId,
                 String.format("%s 포인트 만료", expiredAmount.toString()),
-                String.format("%s 기준 %s 포인트가 만료되었습니다", expiredDate.format(DateTimeFormatter.ISO_DATE), expiredAmount)
+                String.format("%s 기준 %s 포인트가 만료되었습니다.", expiredDate.format(DateTimeFormatter.ISO_DATE), expiredAmount)
         );
     }
 }

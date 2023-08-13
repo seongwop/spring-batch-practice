@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MessageExpiredPointJobConfiguration {
     @Bean
-    public Job MessageExpiredPointJob(
+    public Job messageExpiredPointJob(
             JobRepository jobRepository,
             TodayJobParameterValidator validator,
             Step messageExpiredPointStep
     ) {
-        return new JobBuilder("MessageExpiredPointStep", jobRepository)
+        return new JobBuilder("messageExpiredPointJob", jobRepository)
                 .validator(validator)
                 .incrementer(new RunIdIncrementer())
                 .start(messageExpiredPointStep)
