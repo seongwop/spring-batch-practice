@@ -2,11 +2,8 @@ package com.example.pointmanagement.job.reservation;
 
 import com.example.pointmanagement.BatchTestSupport;
 import com.example.pointmanagement.point.Point;
-import com.example.pointmanagement.point.PointRepository;
 import com.example.pointmanagement.point.reservation.PointReservation;
-import com.example.pointmanagement.point.reservation.PointReservationRepository;
 import com.example.pointmanagement.point.wallet.PointWallet;
-import com.example.pointmanagement.point.wallet.PointWalletRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +16,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class ExecutePointReservationJobConfigurationTest extends BatchTestSupport {
     @Autowired
-    PointWalletRepository pointWalletRepository;
-    @Autowired
-    PointReservationRepository pointReservationRepository;
-    @Autowired
     Job executePointReservationJob;
-    @Autowired
-    PointRepository pointRepository;
 
     @Test
     void executePointReservationJob() throws Exception {

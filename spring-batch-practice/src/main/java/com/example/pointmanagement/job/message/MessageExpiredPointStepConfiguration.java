@@ -31,7 +31,7 @@ public class MessageExpiredPointStepConfiguration {
             JobRepository jobRepository,
             PlatformTransactionManager platformTransactionManager,
             InputExpiredPointAlarmCriteriaDateStepListener listener,
-            RepositoryItemReader<ExpiredPointSummary> messageExpirePointItemReader,
+            RepositoryItemReader<ExpiredPointSummary> messageExpiredPointItemReader,
             ItemProcessor<ExpiredPointSummary, Message> messageExpiredPointItemProcessor,
             JpaItemWriter<Message> messageExpiredPointItemWriter
     ) {
@@ -39,7 +39,7 @@ public class MessageExpiredPointStepConfiguration {
                 .allowStartIfComplete(true)
                 .listener(listener)
                 .<ExpiredPointSummary, Message>chunk(1000, platformTransactionManager)
-                .reader(messageExpirePointItemReader)
+                .reader(messageExpiredPointItemReader)
                 .processor(messageExpiredPointItemProcessor)
                 .writer(messageExpiredPointItemWriter)
                 .build();

@@ -7,18 +7,20 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class MessageExpireSoonPointJobConfiguration {
     @Bean
     public Job messageExpireSoonPointJob(
             JobRepository jobRepository,
             TodayJobParameterValidator validator,
-            Step messageExpiredSoonPointStep
+            Step messageExpireSoonPointStep
     ) {
         return new JobBuilder("MessageExpireSoonPointJob", jobRepository)
                 .validator(validator)
                 .incrementer(new RunIdIncrementer())
-                .start(messageExpiredSoonPointStep)
+                .start(messageExpireSoonPointStep)
                 .build();
     }
 }

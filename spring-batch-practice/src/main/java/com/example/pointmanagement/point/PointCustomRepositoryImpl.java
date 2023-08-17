@@ -38,4 +38,27 @@ public class PointCustomRepositoryImpl extends QuerydslRepositorySupport impleme
                 elementCount
         );
     }
+
+    @Override
+    public Page<ExpiredPointSummary> sumBeforeCriteriaDate(LocalDate alarmCriteriaDate, Pageable pageable) {
+        JPQLQuery<ExpiredPointSummary> query =
+        from(QPoint.point)
+                 .select(
+                         new QExpiredPointSummary(
+                                 QPoint.point.pointWallet.userId,
+                                 QPoint.point.amount.sum().coalesce(BigInteger.ZERO)
+                         )
+                 )
+                 .where(QPoint.point.expired.eq(false))
+                 .where(QPoint.point.used.eq(false))
+                 .where(QPoint.point.expireDate.lt(alarmCriteriaDate))
+                 .groupBy(QPoint.point.pointWallet);
+        List<ExpiredPointSummary> expiredPointSummaryList = getQuerydsl().applyPagination(pageable, query).fetch();
+        long elementCount = query.fetchCount();
+        return new PageImpl<>(
+                expiredPointSummaryList,
+                PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()),
+                elementCount
+        );
+    }
 }
