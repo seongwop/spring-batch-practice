@@ -6,6 +6,7 @@ import com.example.pointmanagement.point.reservation.PointReservation;
 import com.example.pointmanagement.point.wallet.PointWallet;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.*;
+import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigInteger;
@@ -17,6 +18,8 @@ import static org.assertj.core.api.BDDAssertions.then;
 class ExecutePointReservationJobConfigurationTest extends BatchTestSupport {
     @Autowired
     Job executePointReservationJob;
+    @Autowired
+    JobExplorer jobExplorer;
 
     @Test
     void executePointReservationJob() throws Exception {
@@ -38,8 +41,9 @@ class ExecutePointReservationJobConfigurationTest extends BatchTestSupport {
                 )
         );
         // when
-        JobParameters jobParameters = new JobParametersBuilder()
+        JobParameters jobParameters = new JobParametersBuilder(jobExplorer)
                 .addString("today", "2023-08-06")
+                .getNextJobParameters(executePointReservationJob)
                 .toJobParameters();
         JobExecution jobExecution = launchJob(executePointReservationJob, jobParameters);
         // then

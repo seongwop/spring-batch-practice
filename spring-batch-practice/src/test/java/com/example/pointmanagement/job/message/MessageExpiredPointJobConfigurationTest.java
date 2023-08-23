@@ -6,6 +6,7 @@ import com.example.pointmanagement.point.Point;
 import com.example.pointmanagement.point.wallet.PointWallet;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.*;
+import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigInteger;
@@ -17,6 +18,8 @@ import static org.assertj.core.api.BDDAssertions.then;
 class MessageExpiredPointJobConfigurationTest extends BatchTestSupport {
     @Autowired
     Job messageExpiredPointJob;
+    @Autowired
+    JobExplorer jobExplorer;
 
     @Test
     void messageExpirePointJob() throws Exception {
@@ -39,8 +42,9 @@ class MessageExpiredPointJobConfigurationTest extends BatchTestSupport {
         pointRepository.save(new Point(pointWallet1, BigInteger.valueOf(1000), earnDate, notExpireDate));
         pointRepository.save(new Point(pointWallet1, BigInteger.valueOf(1000), earnDate, notExpireDate));
         // when
-        JobParameters jobParameters = new JobParametersBuilder()
+        JobParameters jobParameters = new JobParametersBuilder(jobExplorer)
                 .addString("today", "2023-08-10")
+                .getNextJobParameters(messageExpiredPointJob)
                 .toJobParameters();
         JobExecution execution = launchJob(messageExpiredPointJob, jobParameters);
         // then
