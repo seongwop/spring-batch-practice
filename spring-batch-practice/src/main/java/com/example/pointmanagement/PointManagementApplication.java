@@ -9,5 +9,4 @@ public class PointManagementApplication {
     public static void main(String[] args) {
         SpringApplication.run(PointManagementApplication.class, args);
     }
-
 }

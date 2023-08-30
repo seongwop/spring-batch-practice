@@ -56,3 +56,4 @@ class ExpirePointJobConfigurationTest extends BatchTestSupport {
         then(changedPointWallet.getAmount()).isEqualByComparingTo(BigInteger.valueOf(3000));
     }
 }
+

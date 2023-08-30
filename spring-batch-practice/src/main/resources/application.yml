@@ -3,7 +3,7 @@ spring:
     jdbc:
       initialize-schema: always
     job:
-      name: {job.name:NONE}
+      name: ${job.name:NONE}
   jpa:
     show-sql: true
     hibernate:
