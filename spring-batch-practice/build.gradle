@@ -47,6 +47,9 @@ dependencies {
     // junit
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    // guava
+    implementation group: 'com.google.guava', name: 'guava', version: '32.1.2-jre'
+
 
 
 }
