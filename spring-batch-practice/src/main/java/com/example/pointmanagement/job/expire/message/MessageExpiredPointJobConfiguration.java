@@ -1,4 +1,4 @@
-package com.example.pointmanagement.job.message;
+package com.example.pointmanagement.job.expire.message;
 
 import com.example.pointmanagement.job.validator.TodayJobParameterValidator;
 import org.springframework.batch.core.Job;
